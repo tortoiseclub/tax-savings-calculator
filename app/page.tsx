@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { Input } from "@heroui/input";
-import {Card, CardHeader, CardBody, CardFooter} from "@heroui/card";
+import { Card, CardBody, CardHeader } from "@heroui/card";
 
 export default function CalculatorPage() {
   const [grossSalary, setGrossSalary] = useState<string>("");
@@ -271,6 +271,31 @@ export default function CalculatorPage() {
           /> */}
         </div>
 
+        {/* Savings Summary */}
+        {grossSalary && deviceValue && (
+          <div className="mb-8 text-center">
+            <Card className="bg-green-50 border-green-200">
+              <CardBody>
+                <div className="text-2xl font-bold text-green-700">
+                  Total Savings:{" "}
+                  {formatCurrency(
+                    (withTortoiseCalcs.remainingAmount -
+                      withoutTortoiseCalcs.remainingAmount) *
+                      12,
+                  )}
+                </div>
+                <div className="text-lg text-gray-600 mt-2">
+                  Monthly Savings via Device Benefit Program:{" "}
+                  {formatCurrency(
+                    withTortoiseCalcs.remainingAmount -
+                      withoutTortoiseCalcs.remainingAmount,
+                  )}
+                </div>
+              </CardBody>
+            </Card>
+          </div>
+        )}
+
         {/* Two Column Layout */}
         <div className="grid md:grid-cols-2 gap-6">
           {/* Column 1: Buying without Tortoise */}
@@ -377,31 +402,6 @@ export default function CalculatorPage() {
             </CardBody>
           </Card>
         </div>
-
-        {/* Savings Summary */}
-        {grossSalary && deviceValue && (
-          <div className="mt-8 text-center">
-            <Card className="bg-green-50 border-green-200">
-              <CardBody>
-                <div className="text-2xl font-bold text-green-700">
-                  Total Savings:{" "}
-                  {formatCurrency(
-                    (withTortoiseCalcs.remainingAmount -
-                      withoutTortoiseCalcs.remainingAmount) *
-                      12,
-                  )}
-                </div>
-                <div className="text-lg text-gray-600 mt-2">
-                  Monthly Savings via Device Benefit Program:{" "}
-                  {formatCurrency(
-                    withTortoiseCalcs.remainingAmount -
-                      withoutTortoiseCalcs.remainingAmount,
-                  )}
-                </div>
-              </CardBody>
-            </Card>
-          </div>
-        )}
       </div>
     </div>
   );
