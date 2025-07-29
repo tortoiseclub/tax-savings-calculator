@@ -199,7 +199,7 @@ export default function CalculatorPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
